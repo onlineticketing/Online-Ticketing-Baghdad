@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حجز رحلة طيران</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+        }
+        .card h2 {
+            text-align: center;
+            color: #007bff;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select, .form-group button {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .logo {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+        .whatsapp-button {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .whatsapp-button:hover {
+            background-color: #1ebe57;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="logo.png" alt="شعار الطيران" class="logo">
+        <h2>حجز رحلة طيران</h2>
+        <div class="form-group">
+            <label>مكان المغادرة</label>
+            <input type="text" id="departure" placeholder="أدخل مكان المغادرة">
+        </div>
+        <div class="form-group">
+            <label>الوجهة</label>
+            <input type="text" id="destination" placeholder="أدخل الوجهة">
+        </div>
+        <div class="form-group">
+            <label>تاريخ السفر</label>
+            <input type="date" id="date">
+        </div>
+        <div class="form-group">
+            <label>عدد الركاب</label>
+            <input type="number" id="passengers" min="1" value="1">
+        </div>
+        <div class="form-group">
+            <label>فئة التذكرة</label>
+            <select id="classType">
+                <option value="economy">الدرجة الاقتصادية</option>
+                <option value="business">درجة رجال الأعمال</option>
+                <option value="first">الدرجة الأولى</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button onclick="searchFlights()">بحث عن رحلات</button>
+        </div>
+        <div class="form-group">
+            <button class="whatsapp-button" onclick="sendWhatsApp()">إرسال عبر واتساب</button>
+        </div>
+    </div>
+    <script>
+        function searchFlights() {
+            const departure = document.getElementById('departure').value;
+            const destination = document.getElementById('destination').value;
+            const date = document.getElementById('date').value;
+            const passengers = document.getElementById('passengers').value;
+            const classType = document.getElementById('classType').value;
+            
+            alert(`بحث عن رحلات من ${departure} إلى ${destination} بتاريخ ${date} لعدد ${passengers} راكب في فئة ${classType}`);
+        }
+        
+        function sendWhatsApp() {
+            const departure = document.getElementById('departure').value;
+            const destination = document.getElementById('destination').value;
+            const date = document.getElementById('date').value;
+            const passengers = document.getElementById('passengers').value;
+            const classType = document.getElementById('classType').value;
+            
+            const message = `حجز رحلة طيران:\nمن: ${departure}\nإلى: ${destination}\nالتاريخ: ${date}\nعدد الركاب: ${passengers}\nفئة التذكرة: ${classType}`;
+            const whatsappNumber = "9647730000231"; // ضع رقم الواتساب هنا بدون + أو 0 في البداية
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
